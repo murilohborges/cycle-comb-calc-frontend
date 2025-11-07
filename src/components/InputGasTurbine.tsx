@@ -1,50 +1,55 @@
-import InputField from '../components/InputField'
+import InputField from './InputField'
 
-interface InputFuelProps {
+interface InputGasTurbineProps {
   value: string
   onChange: (val: string) => void
 }
 
-export default function InputFuel({ value, onChange }: InputFuelProps) {
+export default function InputGasTurbine({ value, onChange }: InputGasTurbineProps) {
   return (
     <div className='space-y-1'>
       <InputField
-        label="Metano"
+        label="Vazão de combustível (kg/h)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Etano"
+        label="Temp. de entrada do combustível (°C)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Propano"
+        label="Temp. de entrada do ar (°C)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Butano"
+        label="Porcentagem de excesso de ar (%)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Água"
+        label="Pressão atmosférica local (atm)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Dióxido de Carbono"
+        label="Temperatura local (°C)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Hidrogênio"
+        label="Umidade relativa (%)"
         value={value}
         onChange={onChange}
       />
       <InputField
-        label="Nitrogênio"
+        label="Eficiência da turbina a gás (%)"
+        value={value}
+        onChange={onChange}
+      />
+      <InputField
+        label="Temperatura de chaminé (°C)"
         value={value}
         onChange={onChange}
       />

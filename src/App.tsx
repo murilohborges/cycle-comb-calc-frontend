@@ -3,8 +3,8 @@ import SimulationPage from './pages/SimulationPage'
 function App() {
 
   return (
-    <div className="w-full max-w-md">
-      <SimulationPage />
+    <div className="root">
+      <SimulationPage/>
     </div>
   )
 }

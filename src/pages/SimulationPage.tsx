@@ -2,9 +2,19 @@ import { useState } from 'react'
 import InputSection from '../components/InputSection'
 import InputFuel from '../components/InputFuel'
 import ResultCard from '../components/ResultCard'
+import InputCycleBrayton from '../components/InputGasTurbine'
+import InputHRSG from '../components/InputHRSG'
+import InputSteamTurbine from '../components/InputSteamTurbine'
+import InputPump from '../components/InputPump'
+import InputCondenser from '../components/InputCondenser'
 
 export default function SimulationPage() {
-  const [temperature, setTemperature] = useState('')
+  const [fuelComposition, setFuelComposition] = useState('')
+  const [cycleBraytonSettings, setCycleBraytonSettings] = useState('')
+  const [HRSGSettings, setHRSGSettings] = useState('')
+  const [steamTurbineSettings, setSteamTurbineSettings] = useState('')
+  const [pumpSettings, setPumpSettings] = useState('')
+  const [condenserSettings, setCondenserSettings] = useState('')
   const [result, setResult] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -28,7 +38,7 @@ export default function SimulationPage() {
   }
 
   return (
-    <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-md">
+    <div className="bg-white shadow-md rounded-xl p-6 w-150 justify-center">
       <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
         Cycle Comb Calculator
       </h1>
@@ -36,8 +46,43 @@ export default function SimulationPage() {
       <div className="space-y-4">
         <InputSection label="Composição molar do combustível em (%)">
           <InputFuel
-            value={temperature}
-            onChange={setTemperature}
+            value={fuelComposition}
+            onChange={setFuelComposition}
+          />
+        </InputSection>
+
+        <InputSection label="Ciclo Brayton (Turbina a gás)">
+          <InputCycleBrayton
+            value={cycleBraytonSettings}
+            onChange={setCycleBraytonSettings}
+          />
+        </InputSection>
+
+        <InputSection label="Caldeira de Recuperação de Calor (HRSG)">
+          <InputHRSG
+            value={HRSGSettings}
+            onChange={setHRSGSettings}
+          />
+        </InputSection>
+
+        <InputSection label="Turbina a Vapor">
+          <InputSteamTurbine
+            value={steamTurbineSettings}
+            onChange={setSteamTurbineSettings}
+          />
+        </InputSection>
+
+        <InputSection label="Bomba">
+          <InputPump
+            value={pumpSettings}
+            onChange={setPumpSettings}
+          />
+        </InputSection>
+
+        <InputSection label="Condensador">
+          <InputCondenser
+            value={condenserSettings}
+            onChange={setCondenserSettings}
           />
         </InputSection>
 
