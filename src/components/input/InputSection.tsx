@@ -35,6 +35,7 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
         <div key={key} className="rounded-2xl border border-gray-200 bg-white shadow-sm">
           {/* Cabeçalho do accordion */}
           <button
+            type='button'
             onClick={() => toggleSection(key)}
             className="flex w-full items-center justify-between p-4 text-left text-gray-800 font-semibold transition-colors rounded-t-2xl"
           >
