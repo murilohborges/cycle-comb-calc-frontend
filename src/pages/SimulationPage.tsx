@@ -66,7 +66,7 @@ export default function SimulationPage() {
     setResults(null)
 
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 15000)
+    const timeout = setTimeout(() => controller.abort(), 120000)
 
     try {
       const response = await fetch('https://cycle-comb-calc.onrender.com/simulation', {
@@ -79,10 +79,10 @@ export default function SimulationPage() {
       clearTimeout(timeout)
 
       if (!response.ok) {
-        let errorMsg = `Error in request (HTTP ${response.status})`
+        let errorMsg = `Error${response.status}: ${response.statusText}`
         try {
           const errorData = await response.json()
-          errorMsg = errorData.detail || errorData.message || errorMsg
+          errorMsg = `${errorData.type} (${response.status}): ${errorData.error}`
         } catch {
           errorMsg = await response.text()
         }
