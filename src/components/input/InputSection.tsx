@@ -30,16 +30,43 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
   ]
 
   return (
-    <section className="space-y-4 p-4">
+    <section
+      className="
+        space-y-5 
+        p-2 sm:p-4 
+        w-full 
+        max-w-md sm:max-w-lg md:max-w-2xl 
+        mx-auto
+      "
+    >
       {sections.map(({ title, key, component }) => (
-        <div key={key} className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div
+          key={key}
+          className="
+            rounded-2xl 
+            border border-gray-200 
+            bg-white 
+            shadow-sm 
+            transition-all 
+            duration-200
+            hover:shadow-md
+          "
+        >
           {/* Cabeçalho do accordion */}
           <button
-            type='button'
+            type="button"
             onClick={() => toggleSection(key)}
-            className="flex w-full items-center justify-between p-4 text-left text-gray-800 font-semibold transition-colors rounded-t-2xl"
+            className="
+              flex w-full items-center justify-between 
+              p-3 sm:p-4 
+              text-left text-gray-800 font-semibold 
+              rounded-2xl 
+              bg-gray-100 
+              hover:bg-gray-200 
+              transition-colors
+            "
           >
-            <span>{title}</span>
+            <span className="text-sm sm:text-base">{title}</span>
             {openSection === key ? (
               <ChevronDown className="h-5 w-5 text-gray-500 transition-transform duration-200" />
             ) : (
@@ -49,11 +76,14 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
 
           {/* Conteúdo expansível */}
           <div
-            className={`transition-all duration-300 overflow-hidden ${
-              openSection === key ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
-            }`}
+            className={`
+              transition-all duration-300 ease-in-out overflow-hidden
+              ${openSection === key ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}
+            `}
           >
-            <div className="p-4 border-t border-gray-100">{component}</div>
+            <div className="p-3 sm:p-4 border-t border-gray-100">
+              {component}
+            </div>
           </div>
         </div>
       ))}
