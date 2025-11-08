@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# 🧮 Combined Cycle Brayton–Rankine Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Web interface to simulate thermodynamic properties and performance of a combined gas–steam cycle (Brayton–Rankine), consuming a Python/FastAPI microservice hosted on Render.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+- **React (Vite + TypeScript)** — reactive and modular frontend  
+- **TailwindCSS** — responsive and modern styling 
+- **Fetch API** — backend communication with timeout  
+- **FastAPI (Render)** — Python microservice for thermodynamic calculations  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+✅ Input of thermodynamic parameters (pressures, temperatures, fuel composition, etc.)  
+✅ Buttons to **clear all inputs** or **load default preset values**  
+✅ Request handling via `fetch()` with a **15-second timeout**  
+✅ Dynamic and responsive result display in a result card  
+✅ Error messages displayed directly from the backend API  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧰 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cycle-comb-calc-frontend/
+│
+├── src/
+│ ├── components/
+│ │ ├── input/
+│ │ └── ResultCard.tsx
+│ ├── pages/
+│ │ └── SimulationPage.tsx
+│ ├── styles/
+│ │ └── global.css
+│ ├── App.tsx
+│ └── main.tsx
+├── public/
+├── index.html
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🖥️ Run Locally
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# 1. Clone the repository
+git clone https://github.com/murilohborges/cycle-comb-calc-frontend.git
+cd yourrepo
+
+# 2. Install dependencies
+npm install
+
+# 3. Run the development server
+npm run dev
 ```
+
+- App will be available at:
+👉 http://localhost:5173
+
+---
+
+## 🌐 Backend (FastAPI)
+
+This frontend consumes the following API hosted on Render:
+```bash
+https://cycle-comb-calc.onrender.com/simulation
+```
+
+---
+
+## ⚠️ Error Handling and Timeout
+
+The backend communication includes:
+
+- 15-second timeout to prevent freezing.
+
+- Automatic capture of API error messages (from FastAPI’s "detail" field).
+
+- User-friendly error display in the UI.
+
+Example error message:
+
+```bash
+"Failed to fetch results. Please check your inputs or try again."
+```
+
+## 🧠 Thermodynamic Concept
+
+The Combined Brayton–Rankine Cycle integrates a gas turbine (Brayton cycle) with a steam turbine (Rankine cycle), using waste heat from the gas turbine exhaust to generate additional power — significantly increasing overall plant efficiency.
