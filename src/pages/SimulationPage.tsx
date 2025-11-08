@@ -19,11 +19,12 @@ export default function SimulationPage() {
     setResults(null)
 
     try {
-      const response = await fetch('https://cycle-comb-calc.onrender.com/calculate', {
+      const response = await fetch('https://cycle-comb-calc.onrender.com/simulation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
+      if (!formData) throw new Error('Dados inválidos')
 
       if (!response.ok) throw new Error('Erro na requisição')
 
