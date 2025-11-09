@@ -106,9 +106,17 @@ export default function SimulationPage() {
   return (
     <main className="min-h-screen bg-gray-800 py-8 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-white">
-          Simulador de Ciclo Combinado Brayton-Rankine
-        </h1>
+        <div className='flex justify-center items-end'>
+          <img
+            src="/src/assets/logo_title.png"
+            alt="Logo"
+            className="w-8 h-8 sm:w-30 sm:h-30"
+          />
+          <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-white">
+            Simulador de Ciclo Combinado Brayton-Rankine
+          </h1>
+        </div>
+        
         <h2 className="text-lg sm:text-xl font-semibold text-center mb-8 text-gray-200">
           Obtenha dados simulados de uma termoelétrica a gás
         </h2>
