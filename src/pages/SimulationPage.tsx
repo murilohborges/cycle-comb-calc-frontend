@@ -82,10 +82,16 @@ export default function SimulationPage() {
         let errorMsg = `Error${response.status}: ${response.statusText}`
         try {
           const errorData = await response.json()
-          errorMsg = `${errorData.type} (${response.status}): ${errorData.error}`
+          if (errorData.details) {
+            // pydantic error validation
+            errorMsg = `${errorData.type}. Error in the field: "${errorData.details[0].loc[1]}". ${errorData.details[0].msg}`
+          }else{
+            errorMsg = `${errorData.type} (${response.status}): ${errorData.error}`
+          }
         } catch {
           errorMsg = await response.text()
         }
+        
         throw new Error(errorMsg)
       }
 
