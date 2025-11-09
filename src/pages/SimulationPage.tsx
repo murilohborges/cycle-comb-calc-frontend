@@ -108,7 +108,7 @@ export default function SimulationPage() {
       <div className="max-w-6xl mx-auto">
         <div className='flex justify-center items-end'>
           <img
-            src="/src/assets/logo_title.png"
+            src="/logo_title.png"
             alt="Logo"
             className="w-8 h-8 sm:w-30 sm:h-30"
           />
