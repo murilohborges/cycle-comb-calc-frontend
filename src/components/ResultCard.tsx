@@ -67,7 +67,7 @@ export default function ResultCard({ data }: ResultCardProps) {
             </span>
           </li>
           <li className="flex justify-between">
-            <span>Vazão de água de resfriamento (kg/h)</span>
+            <span>Vazão de água de resfriamento (ton/h)</span>
             <span className="font-medium text-gray-800">
               {data.cooling_water_mass_flow ?? "--"}
             </span>
@@ -100,9 +100,9 @@ export default function ResultCard({ data }: ResultCardProps) {
             </span>
           </li>
           <li className="flex justify-between">
-            <span>Vazão de vapor de alta pressão (kg/h)</span>
+            <span>Vazão de vapor de baixa pressão (kg/h)</span>
             <span className="font-medium text-gray-800">
-              {data.high_steam_mass_flow ?? "--"}
+              {data.low_steam_mass_flow ?? "--"}
             </span>
           </li>
           <li className="flex justify-between">
