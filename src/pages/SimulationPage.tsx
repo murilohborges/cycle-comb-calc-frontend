@@ -116,7 +116,7 @@ export default function SimulationPage() {
           <img
             src="/logo_title.png"
             alt="Logo"
-            className="w-8 h-8 sm:w-30 sm:h-30"
+            className="w-32 h-32 sm:w-32 sm:h-32"
           />
           <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-white">
             Simulador de Ciclo Combinado Brayton-Rankine
