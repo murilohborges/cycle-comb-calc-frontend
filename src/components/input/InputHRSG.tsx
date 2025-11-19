@@ -1,8 +1,8 @@
 import InputField from './InputField'
 
 interface InputHRSGProps {
-  data: Record<string, any>
-  onChange: (key: string, value: string) => void
+  data: Record<string, number>
+  onChange: (key: string, value: number) => void
 }
 
 export default function InputHRSG({ data, onChange }: InputHRSGProps) {
@@ -16,7 +16,7 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
         label="Porcentagem da purga (%)"
         name='purge_level'
         value={data.purge_level}
-        onChange={(e) => onChange('purge_level', e.target.value)}
+        onChange={(e) => onChange('purge_level', Number(e.target.value))}
       />
 
       <h4 className="text-base text-gray-600 underline mb-1 mt-4">Condições do nível alto de vapor</h4>
@@ -25,19 +25,19 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
           label="Pressão (bar)"
           name='high_steam_level_pressure'
           value={data.high_steam_level_pressure}
-          onChange={(e) => onChange('high_steam_level_pressure', e.target.value)}
+          onChange={(e) => onChange('high_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
           label="Temperatura (°C)"
           name='high_steam_level_temperature'
           value={data.high_steam_level_temperature}
-          onChange={(e) => onChange('high_steam_level_temperature', e.target.value)}
+          onChange={(e) => onChange('high_steam_level_temperature', Number(e.target.value))}
         />
         <InputField
           label="Fração do vapor (%)"
           name='high_steam_level_fraction'
           value={data.high_steam_level_fraction}
-          onChange={(e) => onChange('high_steam_level_fraction', e.target.value)}
+          onChange={(e) => onChange('high_steam_level_fraction', Number(e.target.value))}
         />
       </div>
       
@@ -47,19 +47,19 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
           label="Pressão (bar)"
           name='medium_steam_level_pressure'
           value={data.medium_steam_level_pressure}
-          onChange={(e) => onChange('medium_steam_level_pressure', e.target.value)}
+          onChange={(e) => onChange('medium_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
           label="Temperatura (°C)"
           name='medium_steam_level_temperature'
           value={data.medium_steam_level_temperature}
-          onChange={(e) => onChange('medium_steam_level_temperature', e.target.value)}
+          onChange={(e) => onChange('medium_steam_level_temperature', Number(e.target.value))}
         />
         <InputField
           label="Fração do vapor (%)"
           name='medium_steam_level_fraction'
           value={data.medium_steam_level_fraction}
-          onChange={(e) => onChange('medium_steam_level_fraction', e.target.value)}
+          onChange={(e) => onChange('medium_steam_level_fraction', Number(e.target.value))}
         />
       </div>
 
@@ -69,13 +69,13 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
           label="Pressão (bar)"
           name='low_steam_level_pressure'
           value={data.low_steam_level_pressure}
-          onChange={(e) => onChange('low_steam_level_pressure', e.target.value)}
+          onChange={(e) => onChange('low_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
           label="Temperatura (°C)"
           name='low_steam_level_temperature'
           value={data.low_steam_level_temperature}
-          onChange={(e) => onChange('low_steam_level_temperature', e.target.value)}
+          onChange={(e) => onChange('low_steam_level_temperature', Number(e.target.value))}
         />
       </div>
       

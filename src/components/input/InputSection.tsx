@@ -9,8 +9,8 @@ import InputPump from './InputPump'
 import InputSteamTurbine from './InputSteamTurbine'
 
 interface InputSectionProps {
-  data: Record<string, any>
-  onChange: (key: string, value: string) => void
+  data: Record<string, number>
+  onChange: (key: string, value: number) => void
 }
 
 export default function InputSection({ data, onChange }: InputSectionProps) {

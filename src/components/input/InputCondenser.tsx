@@ -1,8 +1,8 @@
 import InputField from './InputField'
 
 interface InputCondenserProps {
-  data: Record<string, any>
-  onChange: (key: string, value: string) => void
+  data: Record<string, number>
+  onChange: (key: string, value: number) => void
 }
 
 export default function InputCondenser({ data, onChange }: InputCondenserProps) {
@@ -17,13 +17,13 @@ export default function InputCondenser({ data, onChange }: InputCondenserProps) 
           label="Pressão de operação (bar)"
           name="condenser_operation_pressure"
           value={data.condenser_operation_pressure}
-          onChange={(e) => onChange('condenser_operation_pressure', e.target.value)}
+          onChange={(e) => onChange('condenser_operation_pressure', Number(e.target.value))}
         />
         <InputField
           label="Diferença de temperatura da água de resfriamento (°C)"
           name="range_temperature_cooling_tower"
           value={data.range_temperature_cooling_tower}
-          onChange={(e) => onChange('range_temperature_cooling_tower', e.target.value)}
+          onChange={(e) => onChange('range_temperature_cooling_tower', Number(e.target.value))}
         />
       </div>
     </div>

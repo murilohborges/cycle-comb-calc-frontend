@@ -1,8 +1,8 @@
 import InputField from './InputField'
 
 interface InputSteamTurbineProps {
-  data: Record<string, any>
-  onChange: (key: string, value: string) => void
+  data: Record<string, number>
+  onChange: (key: string, value: number) => void
 }
 
 export default function InputSteamTurbine({ data, onChange }: InputSteamTurbineProps) {
@@ -17,25 +17,25 @@ export default function InputSteamTurbine({ data, onChange }: InputSteamTurbineP
           label="Eficiência do nível alto (%)"
           name='high_steam_level_efficiency'
           value={data.high_steam_level_efficiency}
-          onChange={(e) => onChange('high_steam_level_efficiency', e.target.value)}
+          onChange={(e) => onChange('high_steam_level_efficiency', Number(e.target.value))}
         />
         <InputField
           label="Eficiência do nível médio (%)"
           name='medium_steam_level_efficiency'
           value={data.medium_steam_level_efficiency}
-          onChange={(e) => onChange('medium_steam_level_efficiency', e.target.value)}
+          onChange={(e) => onChange('medium_steam_level_efficiency', Number(e.target.value))}
         />
         <InputField
           label="Eficiência do nível baixo (%)"
           name='low_steam_level_efficiency'
           value={data.low_steam_level_efficiency}
-          onChange={(e) => onChange('low_steam_level_efficiency', e.target.value)}
+          onChange={(e) => onChange('low_steam_level_efficiency', Number(e.target.value))}
         />
         <InputField
           label="Eficiência do conjunto redutor/gerador (%)"
           name='reductor_generator_set_efficiency'
           value={data.reductor_generator_set_efficiency}
-          onChange={(e) => onChange('reductor_generator_set_efficiency', e.target.value)}
+          onChange={(e) => onChange('reductor_generator_set_efficiency', Number(e.target.value))}
         />
       </div>
     </div>

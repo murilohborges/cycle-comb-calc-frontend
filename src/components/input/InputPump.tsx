@@ -1,8 +1,8 @@
 import InputField from './InputField'
 
 interface InputPumpProps {
-  data: Record<string, any>
-  onChange: (key: string, value: string) => void
+  data: Record<string, number>
+  onChange: (key: string, value: number) => void
 }
 
 export default function InputPump({ data, onChange }: InputPumpProps) {
@@ -17,19 +17,19 @@ export default function InputPump({ data, onChange }: InputPumpProps) {
           label="Eficiência da bomba (%)"
           name='pump_efficiency'
           value={data.pump_efficiency}
-          onChange={(e) => onChange('pump_efficiency', e.target.value)}
+          onChange={(e) => onChange('pump_efficiency', Number(e.target.value))}
         />
         <InputField
           label="Eficiência do motor da bomba (%)"
           name='engine_pump_efficiency'
           value={data.engine_pump_efficiency}
-          onChange={(e) => onChange('engine_pump_efficiency', e.target.value)}
+          onChange={(e) => onChange('engine_pump_efficiency', Number(e.target.value))}
         />
         <InputField
           label="Fator de potência da bomba (0 a 1)"
           name='power_factor_pump_efficiency'
           value={data.power_factor_pump_efficiency}
-          onChange={(e) => onChange('power_factor_pump_efficiency', e.target.value)}
+          onChange={(e) => onChange('power_factor_pump_efficiency', Number(e.target.value))}
         />
       </div>
     </div>
