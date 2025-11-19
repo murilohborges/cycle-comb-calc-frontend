@@ -1,7 +1,7 @@
 interface InputFieldProps {
   label: string
   name: string
-  type: 'number'
+  type?: 'number'
   value: number | string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
