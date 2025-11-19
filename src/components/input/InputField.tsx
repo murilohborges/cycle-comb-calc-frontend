@@ -1,15 +1,15 @@
 interface InputFieldProps {
   label: string
   name: string
-  type?: string
-  value: string | number
+  type: 'number'
+  value: number | string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function InputField({
   label,
   name,
-  type = 'text',
+  type = 'number',
   value,
   onChange,
 }: InputFieldProps) {
