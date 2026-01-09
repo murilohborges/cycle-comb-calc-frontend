@@ -1,6 +1,8 @@
 # 🧮 Combined Cycle Brayton–Rankine Simulator
 
-> Web interface to simulate thermodynamic properties and performance of a combined gas–steam cycle (Brayton–Rankine), consuming a Python/FastAPI microservice hosted on Render.
+Web interface to simulate thermodynamic properties and performance of a combined gas–steam cycle (Brayton–Rankine), consuming a Python/FastAPI microservice hosted on Render.
+
+**Live Demo:** [https://cyclecombcalc.netlify.app/](https://cyclecombcalc.netlify.app/)
 
 ---
 
