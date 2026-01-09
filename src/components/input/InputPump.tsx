@@ -9,24 +9,24 @@ export default function InputPump({ data, onChange }: InputPumpProps) {
   return (
     <div className="mb-6 p-6 border rounded-xl bg-gray-50 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-1">
-        Bomba de alimentação
+        Inlet Pump
       </h3>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-end'>
         <InputField
-          label="Eficiência da bomba (%)"
+          label="Pump efficiency (%)"
           name='pump_efficiency'
           value={data.pump_efficiency}
           onChange={(e) => onChange('pump_efficiency', Number(e.target.value))}
         />
         <InputField
-          label="Eficiência do motor da bomba (%)"
+          label="Engine pump efficiency (%)"
           name='engine_pump_efficiency'
           value={data.engine_pump_efficiency}
           onChange={(e) => onChange('engine_pump_efficiency', Number(e.target.value))}
         />
         <InputField
-          label="Fator de potência da bomba (0 a 1)"
+          label="Power factor of the pump (0 to 1)"
           name='power_factor_pump_efficiency'
           value={data.power_factor_pump_efficiency}
           onChange={(e) => onChange('power_factor_pump_efficiency', Number(e.target.value))}

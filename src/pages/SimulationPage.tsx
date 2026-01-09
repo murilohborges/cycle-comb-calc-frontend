@@ -119,21 +119,19 @@ export default function SimulationPage() {
             className="w-32 h-32 sm:w-32 sm:h-32"
           />
           <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-white">
-            Simulador de Ciclo Combinado Brayton-Rankine
+            Combined Cycle Power Plant Calculator
           </h1>
         </div>
         
         <h2 className="text-lg sm:text-xl font-semibold text-center mb-8 text-gray-200">
-          Obtenha dados simulados de uma termoelétrica a gás
+          Get simulated data from a gas-fired combined cycle power plant
         </h2>
 
         <form onSubmit={handleSubmit}>
-          {/* Layout responsivo */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-            {/* Inputs */}
             <div className="bg-gray-400 rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 w-full max-w-md sm:max-w-lg md:max-w-none mx-auto">
               <h3 className="text-lg font-semibold mb-3 text-gray-800 text-center">
-                Dados de Entrada
+                Input Data
               </h3>
 
               <InputSection data={formData} onChange={handleChange} />
@@ -145,7 +143,7 @@ export default function SimulationPage() {
                   className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg 
                              hover:bg-blue-700 disabled:bg-blue-400 transition-colors w-full sm:w-auto"
                 >
-                  {loading ? 'Aguarde...' : 'Calcular'}
+                  {loading ? 'Wait...' : 'Run Simulation'}
                 </button>
 
                 <button
@@ -154,7 +152,7 @@ export default function SimulationPage() {
                   className="px-6 py-2 bg-gray-600 text-white font-medium rounded-lg 
                              hover:bg-gray-700 transition-colors w-full sm:w-auto"
                 >
-                  Limpar
+                  Clear fields
                 </button>
 
                 <button
@@ -163,7 +161,7 @@ export default function SimulationPage() {
                   className="px-6 py-2 bg-green-600 text-white font-medium rounded-lg 
                              hover:bg-green-700 transition-colors w-full sm:w-auto"
                 >
-                  Valores padrão
+                  Default values
                 </button>
               </div>
 

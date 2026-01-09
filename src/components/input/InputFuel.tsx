@@ -9,54 +9,54 @@ export default function InputFuel({ data, onChange }: InputFuelProps) {
   return (
     <div className="mb-6 p-6 border rounded-xl bg-gray-50 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-1">
-        Composição molar do combustível (% mol)
+        Molar composition of the fuel (% mol)
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InputField
-          label="Metano"
+          label="Methane"
           name="methane_molar_fraction_fuel"
           value={data.methane_molar_fraction_fuel}
           onChange={(e) => onChange('methane_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Etano"
+          label="Ethane"
           name="ethane_molar_fraction_fuel"
           value={data.ethane_molar_fraction_fuel}
           onChange={(e) => onChange('ethane_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Propano"
+          label="Propane"
           name="propane_molar_fraction_fuel"
           value={data.propane_molar_fraction_fuel}
           onChange={(e) => onChange('propane_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Butano"
+          label="Butane"
           name="n_butane_molar_fraction_fuel"
           value={data.n_butane_molar_fraction_fuel}
           onChange={(e) => onChange('n_butane_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Água"
+          label="Water"
           name="water_molar_fraction_fuel"
           value={data.water_molar_fraction_fuel}
           onChange={(e) => onChange('water_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Dióxido de Carbono"
+          label="Carbon Dioxide"
           name="carbon_dioxide_molar_fraction_fuel"
           value={data.carbon_dioxide_molar_fraction_fuel}
           onChange={(e) => onChange('carbon_dioxide_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Hidrogênio"
+          label="Hydrogen"
           name="hydrogen_molar_fraction_fuel"
           value={data.hydrogen_molar_fraction_fuel}
           onChange={(e) => onChange('hydrogen_molar_fraction_fuel', Number(e.target.value))}
         />
         <InputField
-          label="Nitrogênio"
+          label="Nitrogen"
           name="nitrogen_molar_fraction_fuel"
           value={data.nitrogen_molar_fraction_fuel}
           onChange={(e) => onChange('nitrogen_molar_fraction_fuel', Number(e.target.value))}

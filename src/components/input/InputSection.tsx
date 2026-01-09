@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronRight, Flame, Wind, Factory, Gauge, Droplet, Snowflake } from 'lucide-react'
 
 import InputCondenser from './InputCondenser'
 import InputFuel from './InputFuel'
@@ -21,12 +21,12 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
   }
 
   const sections = [
-    { title: 'Combustível', key: 'InputFuel', component: <InputFuel data={data} onChange={onChange} /> },
-    { title: 'Turbina a Gás', key: 'InputGasTurbine', component: <InputGasTurbine data={data} onChange={onChange} /> },
-    { title: 'Caldeira de Recuperação (HRSG)', key: 'InputHRSG', component: <InputHRSG data={data} onChange={onChange} /> },
-    { title: 'Turbina a Vapor', key: 'InputSteamTurbine', component: <InputSteamTurbine data={data} onChange={onChange} /> },
-    { title: 'Bomba', key: 'InputPump', component: <InputPump data={data} onChange={onChange} /> },
-    { title: 'Condensador', key: 'InputCondenser', component: <InputCondenser data={data} onChange={onChange} /> },
+    { title: 'Fuel', icon: Flame, key: 'InputFuel', component: <InputFuel data={data} onChange={onChange} /> },
+    { title: 'Gas Turbine', icon: Wind, key: 'InputGasTurbine', component: <InputGasTurbine data={data} onChange={onChange} /> },
+    { title: 'Heat Recovery Steam Generator (HRSG)', icon: Factory, key: 'InputHRSG', component: <InputHRSG data={data} onChange={onChange} /> },
+    { title: 'Steam Turbine', icon: Gauge, key: 'InputSteamTurbine', component: <InputSteamTurbine data={data} onChange={onChange} /> },
+    { title: 'Pump', icon: Droplet, key: 'InputPump', component: <InputPump data={data} onChange={onChange} /> },
+    { title: 'Condenser', icon: Snowflake, key: 'InputCondenser', component: <InputCondenser data={data} onChange={onChange} /> },
   ]
 
   return (
@@ -39,7 +39,7 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
         mx-auto
       "
     >
-      {sections.map(({ title, key, component }) => (
+      {sections.map(({ title, icon: Icon, key, component }) => (
         <div
           key={key}
           className="
@@ -52,7 +52,7 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
             hover:shadow-md
           "
         >
-          {/* Cabeçalho do accordion */}
+          {/* Header of accordion */}
           <button
             type="button"
             onClick={() => toggleSection(key)}
@@ -66,7 +66,10 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
               transition-colors
             "
           >
-            <span className="text-sm sm:text-base">{title}</span>
+            <div className="flex items-center gap-2">
+              <Icon className="h-5 w-5 text-gray-600" />
+              <span className="text-sm sm:text-base">{title}</span>
+            </div>
             {openSection === key ? (
               <ChevronDown className="h-5 w-5 text-gray-500 transition-transform duration-200" />
             ) : (
@@ -74,7 +77,7 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
             )}
           </button>
 
-          {/* Conteúdo expansível */}
+          {/* Expanded content */}
           <div
             className={`
               transition-all duration-300 ease-in-out overflow-hidden

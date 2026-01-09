@@ -9,70 +9,70 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
   return (
     <div className="mb-6 p-6 border rounded-xl bg-gray-50 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-1">
-        Caldeira de Recuperação de Calor (HRSG)
+        Heat Recovery Steam Generator (HRSG)
       </h3>
 
       <InputField
-        label="Porcentagem da purga (%)"
+        label="Purge level (%)"
         name='purge_level'
         value={data.purge_level}
         onChange={(e) => onChange('purge_level', Number(e.target.value))}
       />
 
-      <h4 className="text-base text-gray-600 underline mb-1 mt-4">Condições do nível alto de vapor</h4>
+      <h4 className="text-base text-gray-600 underline mb-1 mt-4">High steam level conditions</h4>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-end mb-6'>
         <InputField
-          label="Pressão (bar)"
+          label="Pressure (bar)"
           name='high_steam_level_pressure'
           value={data.high_steam_level_pressure}
           onChange={(e) => onChange('high_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
-          label="Temperatura (°C)"
+          label="Temperature (°C)"
           name='high_steam_level_temperature'
           value={data.high_steam_level_temperature}
           onChange={(e) => onChange('high_steam_level_temperature', Number(e.target.value))}
         />
         <InputField
-          label="Fração do vapor (%)"
+          label="Steam fraction (%)"
           name='high_steam_level_fraction'
           value={data.high_steam_level_fraction}
           onChange={(e) => onChange('high_steam_level_fraction', Number(e.target.value))}
         />
       </div>
-      
-      <h4 className='text-base text-gray-600 underline mb-1'>Condições do nível médio de vapor</h4>
+
+      <h4 className='text-base text-gray-600 underline mb-1'>Medium steam level conditions</h4>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-end mb-6'>
         <InputField
-          label="Pressão (bar)"
+          label="Pressure (bar)"
           name='medium_steam_level_pressure'
           value={data.medium_steam_level_pressure}
           onChange={(e) => onChange('medium_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
-          label="Temperatura (°C)"
+          label="Temperature (°C)"
           name='medium_steam_level_temperature'
           value={data.medium_steam_level_temperature}
           onChange={(e) => onChange('medium_steam_level_temperature', Number(e.target.value))}
         />
         <InputField
-          label="Fração do vapor (%)"
+          label="Steam fraction (%)"
           name='medium_steam_level_fraction'
           value={data.medium_steam_level_fraction}
           onChange={(e) => onChange('medium_steam_level_fraction', Number(e.target.value))}
         />
       </div>
 
-      <h4 className='text-base text-gray-600 underline mb-1'>Condições do nível baixo de vapor</h4>
+      <h4 className='text-base text-gray-600 underline mb-1'>Low steam level conditions</h4>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-end'>
         <InputField
-          label="Pressão (bar)"
+          label="Pressure (bar)"
           name='low_steam_level_pressure'
           value={data.low_steam_level_pressure}
           onChange={(e) => onChange('low_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
-          label="Temperatura (°C)"
+          label="Temperature (°C)"
           name='low_steam_level_temperature'
           value={data.low_steam_level_temperature}
           onChange={(e) => onChange('low_steam_level_temperature', Number(e.target.value))}
