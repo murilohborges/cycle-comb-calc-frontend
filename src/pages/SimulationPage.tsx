@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import InputSection from '../components/input/InputSection'
-import ResultCard from '../components/ResultCard'
+import { useState } from "react";
+import InputSection from "../components/input/InputSection";
+import ResultCard from "../components/ResultCard";
 
 export default function SimulationPage() {
-  const [formData, setFormData] = useState<Record<string, any>>({})
-  const [results, setResults] = useState<Record<string, any> | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [results, setResults] = useState<Record<string, any> | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (key: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [key]: value }))
-  }
+  const handleChange = (key: string, value: number) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
 
   const handleClear = () => {
-    setFormData({})
-    setResults(null)
-    setError(null)
-  }
+    setFormData({});
+    setResults(null);
+    setError(null);
+  };
 
   const handlePreset = () => {
     const presetData = {
@@ -55,64 +55,70 @@ export default function SimulationPage() {
       power_factor_pump_efficiency: 0.84,
       condenser_operation_pressure: 0.074,
       range_temperature_cooling_tower: 10,
-    }
-    setFormData(presetData)
-  }
+    };
+    setFormData(presetData);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-    setResults(null)
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setResults(null);
 
-    const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 120000)
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 120000);
 
     try {
-      const response = await fetch('https://cycle-comb-calc.onrender.com/simulation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-        signal: controller.signal,
-      })
+      const response = await fetch(
+        "https://cycle-comb-calc.onrender.com/simulation",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+          signal: controller.signal,
+        }
+      );
 
-      clearTimeout(timeout)
+      clearTimeout(timeout);
 
       if (!response.ok) {
-        let errorMsg = `Error${response.status}: ${response.statusText}`
+        let errorMsg = `Error${response.status}: ${response.statusText}`;
         try {
-          const errorData = await response.json()
+          const errorData = await response.json();
           if (errorData.details) {
             // pydantic error validation
-            errorMsg = `${errorData.type}. Error in the field: "${errorData.details[0].loc[1]}". ${errorData.details[0].msg}`
-          }else{
-            errorMsg = `${errorData.type} (${response.status}): ${errorData.error}`
+            errorMsg = `${errorData.type}. Error in the field: "${errorData.details[0].loc[1]}". ${errorData.details[0].msg}`;
+          } else {
+            errorMsg = `${errorData.type} (${response.status}): ${errorData.error}`;
           }
         } catch {
-          errorMsg = await response.text()
+          errorMsg = await response.text();
         }
-        
-        throw new Error(errorMsg)
+
+        throw new Error(errorMsg);
       }
 
-      const data = await response.json()
-      setResults(data)
+      const data = await response.json();
+      setResults(data);
     } catch (err: any) {
-      if (err.name === 'AbortError') {
-        setError('Timeout reached. The server took too long to respond.')
+      if (err.name === "AbortError") {
+        setError("Timeout reached. The server took too long to respond.");
       } else {
-        setError(err.message || 'Failed to obtain results. Check the data or try again.')
+        setError(
+          err.message ||
+            "Failed to obtain results. Check the data or try again."
+        );
       }
     } finally {
-      clearTimeout(timeout)
-      setLoading(false)
+      clearTimeout(timeout);
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <main className="min-h-screen bg-gray-800 py-8 px-4 sm:px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
-        <div className='flex justify-center items-end'>
+        <div className="flex justify-center items-end">
           <img
             src="/logo_title.png"
             alt="Logo"
@@ -122,7 +128,7 @@ export default function SimulationPage() {
             Combined Cycle Power Plant Calculator
           </h1>
         </div>
-        
+
         <h2 className="text-lg sm:text-xl font-semibold text-center mb-8 text-gray-200">
           Get simulated data from a gas-fired combined cycle power plant
         </h2>
@@ -143,7 +149,7 @@ export default function SimulationPage() {
                   className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg 
                              hover:bg-blue-700 disabled:bg-blue-400 transition-colors w-full sm:w-auto"
                 >
-                  {loading ? 'Wait...' : 'Run Simulation'}
+                  {loading ? "Wait..." : "Run Simulation"}
                 </button>
 
                 <button
@@ -166,7 +172,9 @@ export default function SimulationPage() {
               </div>
 
               {error && (
-                <p className="text-red-600 mt-4 text-center font-medium">{error}</p>
+                <p className="text-red-600 mt-4 text-center font-medium">
+                  {error}
+                </p>
               )}
             </div>
 
@@ -178,5 +186,5 @@ export default function SimulationPage() {
         </form>
       </div>
     </main>
-  )
+  );
 }
