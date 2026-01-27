@@ -11,9 +11,11 @@ import InputSteamTurbine from './InputSteamTurbine'
 interface InputSectionProps {
   data: Record<string, number>
   onChange: (key: string, value: number) => void
+  errors?: Record<string, string>
+  focusField?: string | null
 }
 
-export default function InputSection({ data, onChange }: InputSectionProps) {
+export default function InputSection({ data, onChange, errors = {}, focusField = null }: InputSectionProps) {
   const [openSection, setOpenSection] = useState<string | null>('InputFuel')
 
   const toggleSection = (section: string) => {
@@ -21,12 +23,12 @@ export default function InputSection({ data, onChange }: InputSectionProps) {
   }
 
   const sections = [
-    { title: 'Fuel', icon: Flame, key: 'InputFuel', component: <InputFuel data={data} onChange={onChange} /> },
-    { title: 'Gas Turbine', icon: Wind, key: 'InputGasTurbine', component: <InputGasTurbine data={data} onChange={onChange} /> },
-    { title: 'Heat Recovery Steam Generator (HRSG)', icon: Factory, key: 'InputHRSG', component: <InputHRSG data={data} onChange={onChange} /> },
-    { title: 'Steam Turbine', icon: Gauge, key: 'InputSteamTurbine', component: <InputSteamTurbine data={data} onChange={onChange} /> },
-    { title: 'Pump', icon: Droplet, key: 'InputPump', component: <InputPump data={data} onChange={onChange} /> },
-    { title: 'Condenser', icon: Snowflake, key: 'InputCondenser', component: <InputCondenser data={data} onChange={onChange} /> },
+    { title: 'Fuel', icon: Flame, key: 'InputFuel', component: <InputFuel data={data} onChange={onChange} errors={errors} focusField={focusField} /> },
+    { title: 'Gas Turbine', icon: Wind, key: 'InputGasTurbine', component: <InputGasTurbine data={data} onChange={onChange} errors={errors} focusField={focusField} /> },
+    { title: 'Heat Recovery Steam Generator (HRSG)', icon: Factory, key: 'InputHRSG', component: <InputHRSG data={data} onChange={onChange} errors={errors} focusField={focusField} /> },
+    { title: 'Steam Turbine', icon: Gauge, key: 'InputSteamTurbine', component: <InputSteamTurbine data={data} onChange={onChange} errors={errors} focusField={focusField} /> },
+    { title: 'Pump', icon: Droplet, key: 'InputPump', component: <InputPump data={data} onChange={onChange} errors={errors} focusField={focusField} /> },
+    { title: 'Condenser', icon: Snowflake, key: 'InputCondenser', component: <InputCondenser data={data} onChange={onChange} errors={errors} focusField={focusField} /> },
   ]
 
   return (

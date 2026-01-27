@@ -3,9 +3,11 @@ import InputField from './InputField'
 interface InputHRSGProps {
   data: Record<string, number>
   onChange: (key: string, value: number) => void
+  errors?: Record<string, string>
+  focusField?: string | null
 }
 
-export default function InputHRSG({ data, onChange }: InputHRSGProps) {
+export default function InputHRSG({ data, onChange, errors, focusField }: InputHRSGProps) {
   return (
     <div className="mb-6 p-6 border rounded-xl bg-gray-50 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-1">
@@ -16,6 +18,8 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
         label="Purge level (%)"
         name='purge_level'
         value={data.purge_level}
+        errors={errors?.purge_level}
+        shouldFocus={focusField === 'purge_level'}
         onChange={(e) => onChange('purge_level', Number(e.target.value))}
       />
 
@@ -25,18 +29,24 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
           label="Pressure (bar)"
           name='high_steam_level_pressure'
           value={data.high_steam_level_pressure}
+          errors={errors?.high_steam_level_pressure}
+          shouldFocus={focusField === 'high_steam_level_pressure'}
           onChange={(e) => onChange('high_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
           label="Temperature (°C)"
           name='high_steam_level_temperature'
           value={data.high_steam_level_temperature}
+          errors={errors?.high_steam_level_temperature}
+          shouldFocus={focusField === 'high_steam_level_temperature'}
           onChange={(e) => onChange('high_steam_level_temperature', Number(e.target.value))}
         />
         <InputField
           label="Steam fraction (%)"
           name='high_steam_level_fraction'
           value={data.high_steam_level_fraction}
+          errors={errors?.high_steam_level_fraction}
+          shouldFocus={focusField === 'high_steam_level_fraction'}
           onChange={(e) => onChange('high_steam_level_fraction', Number(e.target.value))}
         />
       </div>
@@ -47,18 +57,24 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
           label="Pressure (bar)"
           name='medium_steam_level_pressure'
           value={data.medium_steam_level_pressure}
+          errors={errors?.medium_steam_level_pressure}
+          shouldFocus={focusField === 'medium_steam_level_pressure'}
           onChange={(e) => onChange('medium_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
           label="Temperature (°C)"
           name='medium_steam_level_temperature'
           value={data.medium_steam_level_temperature}
+          errors={errors?.medium_steam_level_temperature}
+          shouldFocus={focusField === 'medium_steam_level_temperature'}
           onChange={(e) => onChange('medium_steam_level_temperature', Number(e.target.value))}
         />
         <InputField
           label="Steam fraction (%)"
           name='medium_steam_level_fraction'
           value={data.medium_steam_level_fraction}
+          errors={errors?.medium_steam_level_fraction}
+          shouldFocus={focusField === 'medium_steam_level_fraction'}
           onChange={(e) => onChange('medium_steam_level_fraction', Number(e.target.value))}
         />
       </div>
@@ -69,12 +85,16 @@ export default function InputHRSG({ data, onChange }: InputHRSGProps) {
           label="Pressure (bar)"
           name='low_steam_level_pressure'
           value={data.low_steam_level_pressure}
+          errors={errors?.low_steam_level_pressure}
+          shouldFocus={focusField === 'low_steam_level_pressure'}
           onChange={(e) => onChange('low_steam_level_pressure', Number(e.target.value))}
         />
         <InputField
           label="Temperature (°C)"
           name='low_steam_level_temperature'
           value={data.low_steam_level_temperature}
+          errors={errors?.low_steam_level_temperature}
+          shouldFocus={focusField === 'low_steam_level_temperature'}
           onChange={(e) => onChange('low_steam_level_temperature', Number(e.target.value))}
         />
       </div>

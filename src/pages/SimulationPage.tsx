@@ -1,12 +1,18 @@
 import { useState } from "react";
 import InputSection from "../components/input/InputSection";
 import ResultCard from "../components/ResultCard";
+import { parsePydanticErrors } from "../utils/pydanticErrorParser";
 
 export default function SimulationPage() {
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [results, setResults] = useState<Record<string, any> | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  type FormErrors = Record<string, string>;
+
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [globalError, setGlobalError] = useState<string | null>(null);
+  const [firstErrorKey, setFirstErrorKey] = useState<string | null>(null);
+
 
   const handleChange = (key: string, value: number) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -15,7 +21,9 @@ export default function SimulationPage() {
   const handleClear = () => {
     setFormData({});
     setResults(null);
-    setError(null);
+    setGlobalError(null);
+    setFormErrors({});
+    setFirstErrorKey(null);
   };
 
   const handlePreset = () => {
@@ -62,8 +70,10 @@ export default function SimulationPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+    setFormErrors({});
+    setGlobalError(null);
     setResults(null);
+    setFirstErrorKey(null);
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 120000);
@@ -82,29 +92,28 @@ export default function SimulationPage() {
       clearTimeout(timeout);
 
       if (!response.ok) {
-        let errorMsg = `Error${response.status}: ${response.statusText}`;
-        try {
-          const errorData = await response.json();
-          if (errorData.details) {
-            // pydantic error validation
-            errorMsg = `${errorData.type}. Error in the field: "${errorData.details[0].loc[1]}". ${errorData.details[0].msg}`;
-          } else {
-            errorMsg = `${errorData.type} (${response.status}): ${errorData.error}`;
-          }
-        } catch {
-          errorMsg = await response.text();
+        const errorData = await response.json();
+        
+        // Pydantic error validation
+        if(errorData.details){
+          const parsedErrors = parsePydanticErrors(errorData.details);
+          setFormErrors(parsedErrors);
+          setFirstErrorKey(Object.keys(parsedErrors)[0]);
+          return;
         }
 
-        throw new Error(errorMsg);
+        // Other errors
+        throw new Error(errorData?.error || `Server error (${response.status})`);
       }
 
       const data = await response.json();
       setResults(data);
+
     } catch (err: any) {
       if (err.name === "AbortError") {
-        setError("Timeout reached. The server took too long to respond.");
+        setGlobalError("Timeout reached. The server took too long to respond.");
       } else {
-        setError(
+        setGlobalError(
           err.message ||
             "Failed to obtain results. Check the data or try again."
         );
@@ -140,7 +149,12 @@ export default function SimulationPage() {
                 Input Data
               </h3>
 
-              <InputSection data={formData} onChange={handleChange} />
+              <InputSection 
+                data={formData} 
+                onChange={handleChange} 
+                errors={formErrors}
+                focusField={firstErrorKey}
+              />
 
               <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
                 <button
@@ -171,9 +185,9 @@ export default function SimulationPage() {
                 </button>
               </div>
 
-              {error && (
+              {globalError && (
                 <p className="text-red-600 mt-4 text-center font-medium">
-                  {error}
+                  {globalError}
                 </p>
               )}
             </div>
